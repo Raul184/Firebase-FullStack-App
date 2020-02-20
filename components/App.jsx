@@ -1,14 +1,16 @@
 import React from 'react'
+import { Router } from '@reach/router'
+//Comps.
 import Posts from './Posts'
 import Post from './Post'
-import { Router } from '@reach/router'
-
+import CreatePost from './CreatePost'
 
 const App = () => {
   return (
     <>
       <Router>
-        <Posts default />
+        <CreatePost default />
+        <Posts path="/posts" />
         <Post path="/post/:id" />
       </Router>
       
