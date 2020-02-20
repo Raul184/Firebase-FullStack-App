@@ -4,10 +4,12 @@ import { PageHeader , Input , Button } from 'antd'
 const { TextArea } = Input
 // db
 import db from '../firebase'
-
+// router
+import { navigate } from '@reach/router'
 
 
 const CreatePost = () => {
+  
   const [ title , setTitle ] = useState('')
   const [ content , setContent ] = useState('')
 
@@ -29,6 +31,7 @@ const CreatePost = () => {
       setTitle('')
       setContent('')
     }
+    navigate('/posts')
   }
   return (
     <div className="CreatePost">

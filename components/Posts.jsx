@@ -28,30 +28,15 @@ const Posts = () => {
     )
   }, 
   [])
-  const routes = [
-    {
-      path: 'index',
-      breadcrumbName: 'Daily',
-    },
-    {
-      path: 'first',
-      breadcrumbName: 'Weekly',
-    },
-    {
-      path: 'second',
-      breadcrumbName: 'Monthly',
-    },
-  ];
-
+  
   return (
-    <div className='Posts'>
-      <div className="header">
+    <div className='Posts' style={{ margin: '1em 1.2em'}}>
+      <div className="header" >
         <PageHeader
           style={{
             border: '1px solid rgb(235, 237, 240)',
           }}
           title="Posts"
-          breadcrumb={{ routes }}
         />
       </div>
       <div className="articles">
@@ -62,7 +47,7 @@ const Posts = () => {
               return <PostSnippet 
                 key={ uuid()} 
                 id={ el.id}
-                title={ el.title}
+                title={_.capitalize(el.title)}
                 content={ el.content} 
               />
             }
