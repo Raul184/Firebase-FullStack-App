@@ -37,6 +37,15 @@ const Post = ({ id }) => {
           }
         </Card>
       </div>
+      <div style={{ margin: '1em' }}>
+          <Button 
+            type="primary"
+            style={{ float: 'right'}}
+            onClick={onSubmit}
+          >
+            Guardar
+          </Button>
+        </div>
     </div>
   )
 }
