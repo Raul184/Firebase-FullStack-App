@@ -1,11 +1,33 @@
-import React from 'react'
+import React , { useEffect , useState } from 'react'
+// Style comps.
 import { PageHeader } from 'antd'
+// Comps.
 import PostSnippet from './PostSnippet'
-import api from '../mock_api.js'
+// Data manip.
 import _ from 'lodash'
 import uuid from 'uuid'
+// db
+import db from '../firebase'
 
 const Posts = () => {
+  const [ posts , setPosts ] = useState([])
+  useEffect(() => {
+    // Get Data
+    db.collection('posts').get()
+    .then( doc => {
+      doc.forEach( 
+        post => {
+          let data = post.data() 
+          data.id = post.id
+        
+          let payload = { ...data }
+          setPosts( posts => [ ...posts , payload ])
+        }
+      )
+    }
+    )
+  }, 
+  [])
   const routes = [
     {
       path: 'index',
@@ -30,14 +52,20 @@ const Posts = () => {
           }}
           title="Posts"
           breadcrumb={{ routes }}
-          // subTitle="This is a subtitle"
         />
       </div>
       <div className="articles">
         {
           _.map(
-            api , 
-            el => <PostSnippet key={uuid()} id={el.id} {...el} />
+            posts , 
+            el => {
+              return <PostSnippet 
+                key={ uuid()} 
+                id={ el.id}
+                title={ el.title}
+                content={ el.content} 
+              />
+            }
           )
         }
       </div>

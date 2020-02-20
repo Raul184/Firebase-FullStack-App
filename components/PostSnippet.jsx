@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 
 
 const PostSnippet = ({ id , title , content }) => {
+  console.log(id);
   return (
     <div className="PostSnippet">
       <Card

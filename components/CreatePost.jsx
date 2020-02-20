@@ -6,6 +6,7 @@ const { TextArea } = Input
 import db from '../firebase'
 
 
+
 const CreatePost = () => {
   const [ title , setTitle ] = useState('')
   const [ content , setContent ] = useState('')
@@ -13,7 +14,21 @@ const CreatePost = () => {
 
   const onSubmit = e => {
     e.preventDefault()
-    
+    if(title.length > 0 && content.length > 0){
+      // Attach
+      const payload = {
+        title ,
+        content
+      }
+      // Save
+      db.collection('posts').add(payload)
+      .then(
+        doc => console.log(doc.id)
+      )
+      // Clean UI
+      setTitle('')
+      setContent('')
+    }
   }
   return (
     <div className="CreatePost">
@@ -40,7 +55,7 @@ const CreatePost = () => {
           <TextArea
             rows={10}
             allowClear  
-            placeholder="title"
+            placeholder="..."
             onChange={e => { setContent(e.target.value)}}
             value={content} 
           />
