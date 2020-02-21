@@ -3,7 +3,7 @@ import { Card } from 'antd'
 import { Link } from '@reach/router'
 
 
-const PostSnippet = ({ id , title , content }) => {
+const PostSnippet = ({ id , title , content , user }) => {
   return (
     <div className="PostSnippet">
       <Card
@@ -13,7 +13,9 @@ const PostSnippet = ({ id , title , content }) => {
         extra={
           <div>
             <Link style={{ marginRight: '15px' }} to={`/post/${id}`}>Read Full Article</Link>
-            <Link to={`/update_post/${id}`}>Edit</Link>
+            {
+              user && <Link to={`/update_post/${id}`}>Edit</Link> 
+            }
           </div>
         }
       >

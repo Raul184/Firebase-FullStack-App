@@ -83,6 +83,13 @@ const UpdatePost = ({ id }) => {
           >
             Editar
           </Button>
+          <Button 
+            type="primary"
+            style={{ float: 'left'}}
+            onClick={() => navigate('/posts')}
+          >
+            Volver
+          </Button>
         </div>
       </div>
     </div>

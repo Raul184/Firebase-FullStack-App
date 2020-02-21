@@ -1,4 +1,5 @@
 import React , { useEffect , useState } from 'react'
+import PropTypes from 'prop-types'
 // Style comps.
 import { PageHeader } from 'antd'
 // Comps.
@@ -8,8 +9,9 @@ import _ from 'lodash'
 import uuid from 'uuid'
 // db
 import db from '../firebase'
+import Post from './Post'
 
-const Posts = () => {
+const Posts = ({ user }) => {
   const [ posts , setPosts ] = useState([])
   useEffect(() => {
     // Get Data
@@ -49,6 +51,7 @@ const Posts = () => {
                 id={ el.id}
                 title={_.capitalize(el.title)}
                 content={ el.content} 
+                user={user}
               />
             }
           )
@@ -58,5 +61,8 @@ const Posts = () => {
   )
 }
 
+Post.propTypes = {
+  user: PropTypes.object.isRequired,
+}
 
 export default Posts;
