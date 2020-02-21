@@ -59,7 +59,7 @@ const App = () => {
             Login
           </Link>
           : 
-          <p onClick={signUserOut} style={{ margin: '0' , float: 'right' }}>
+          <p onClick={signUserOut} style={{ margin: '0' , float: 'right' , pointer: 'cursor'}}>
           <Icon type="logout"  style={{ padding: '.5em' }} />
           Sign Out
         </p> 
