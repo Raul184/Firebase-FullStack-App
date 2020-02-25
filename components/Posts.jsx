@@ -15,18 +15,18 @@ const Posts = ({ user }) => {
   const [ posts , setPosts ] = useState([])
   useEffect(() => {
     // Get Data
-    db.collection('posts').get()
-    .then( doc => {
-      doc.forEach( 
-        post => {
-          let data = post.data() 
-          data.id = post.id
-        
-          let payload = { ...data }
-          setPosts( posts => [ ...posts , payload ])
-        }
-      )
-    }
+    db.collection('users').doc(user.uid).collection('posts')
+    .onSnapshot( async posts => {
+        const postData = await posts.docs.map( 
+          post => {
+            let data = post.data()
+            const { id } = post;
+            let payload = { id , ...data }
+            return payload
+          }
+        )
+        setPosts( postData )
+      }
     )
   }, 
   [])
@@ -62,7 +62,7 @@ const Posts = ({ user }) => {
 }
 
 Post.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
 }
 
 export default Posts;

@@ -8,8 +8,7 @@ import db from '../firebase'
 import { navigate } from '@reach/router'
 
 
-const CreatePost = () => {
-  
+const CreatePost = ({ user : { uid }}) => {
   const [ title , setTitle ] = useState('')
   const [ content , setContent ] = useState('')
 
@@ -23,7 +22,7 @@ const CreatePost = () => {
         content
       }
       // Save
-      db.collection('posts').add(payload)
+      db.collection('users').doc(uid).collection('posts').add(payload)
       .then(
         doc => console.log(doc.id)
       )

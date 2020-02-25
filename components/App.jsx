@@ -67,12 +67,12 @@ const App = () => {
       </Menu>
       </div>      
       <Router>
-        <SignUp path="/signup" default />
-        <SignIn path="/login" />
-        <Posts path="/posts" user={user}/>
+        <SignIn path="/login" default />
+        <SignUp path="/signup" />
+        <Posts path="/posts" user={user} />
         <Post path="/post/:id" />
-        <CreatePost path="/create_post" />
-        <UpdatePost path="/update_post/:id" />
+        <CreatePost path="/create_post" user={user} />
+        <UpdatePost path="/update_post/:id" user={user} />
       </Router>
       
     </>

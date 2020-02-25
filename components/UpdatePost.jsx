@@ -8,12 +8,12 @@ import db from '../firebase'
 import { navigate } from '@reach/router'
 
 
-const UpdatePost = ({ id }) => {  
+const UpdatePost = ({ id , user: { uid } }) => {  
   const [ title , setTitle ] = useState('')
   const [ content , setContent ] = useState('')
 
   useEffect(() => {
-    let postRef = db.collection('posts').doc(id)
+    let postRef = db.collection('users').doc(uid).collection('posts').doc(id)
 
     postRef.get()
     .then(
@@ -35,7 +35,7 @@ const UpdatePost = ({ id }) => {
         content
       }
       // Save
-      db.collection('posts').doc(id).update(payload)
+      db.collection('users').doc(uid).collection('posts').doc(id).update(payload)
       .then(
         doc => console.log('Updated')
       )
