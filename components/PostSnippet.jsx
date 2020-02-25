@@ -4,7 +4,7 @@ import { Link } from '@reach/router'
 // DB
 import db from '../firebase'
 
-const PostSnippet = ({ id , title , content , user }) => {
+const PostSnippet = ({ id , title , content , user , uid }) => {
   const handleDelete = ( e , id) => {
     e.preventDefault()
     let postRef = db.collection('users').doc(user.uid).collection('posts').doc(id)
@@ -18,7 +18,7 @@ const PostSnippet = ({ id , title , content , user }) => {
         title={title}
         extra={
           <div>
-            <Link style={{ marginRight: '15px' }} to={`/post/${id}`}>Read Full Article</Link>
+            <Link style={{ marginRight: '15px' }} to={`/blogs/${uid}/post/${id}`}>Read Full Article</Link>
             {
               user && <>
                 <Link to={`/update_post/${id}`} style={{ marginRight: '15px' }}>

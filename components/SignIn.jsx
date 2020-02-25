@@ -24,7 +24,7 @@ const SignIn = () => {
     setEmail('')
     setPassword('')
     // redirect
-    navigate('/posts')
+    navigate('/blogs/${uid}/posts')
   }
   return (
     <div style={{textAlign: 'center'}}>
