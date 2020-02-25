@@ -11,11 +11,12 @@ import uuid from 'uuid'
 import db from '../firebase'
 import Post from './Post'
 
-const Posts = ({ user }) => {
+const Posts = ({ user  , uid }) => {
   const [ posts , setPosts ] = useState([])
   useEffect(() => {
+    let userId = user?.uid ? user.uid : uid 
     // Get Data
-    db.collection('users').doc(user.uid).collection('posts')
+    db.collection('users').doc(userId).collection('posts')
     .onSnapshot( async posts => {
         const postData = await posts.docs.map( 
           post => {
@@ -52,6 +53,7 @@ const Posts = ({ user }) => {
                 title={_.capitalize(el.title)}
                 content={ el.content} 
                 user={user}
+                uid={uid}
               />
             }
           )

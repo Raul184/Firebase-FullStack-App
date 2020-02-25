@@ -3,13 +3,13 @@ import { PageHeader , Card } from 'antd'
 import uuid from 'uuid'
 import db from '../firebase'
 
-const Post = ({ id }) => {
+const Post = ({ id , uid }) => {
   const [ title , setTitle ] = useState('')
   const [ content , setContent ] = useState('')
 
   useEffect(() => {
-    let postRef = db.collection('posts').doc(id)
-
+    let postRef = db.collection('users').doc(uid).collection('posts').doc(id)
+    
     postRef.get()
     .then(
       doc => {

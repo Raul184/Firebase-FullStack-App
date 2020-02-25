@@ -30,7 +30,7 @@ const CreatePost = ({ user : { uid }}) => {
       setTitle('')
       setContent('')
     }
-    navigate('/posts')
+    navigate('/users/${uid}/posts')
   }
   return (
     <div className="CreatePost">
